@@ -1,15 +1,11 @@
 ﻿using SelfServiceReceptionist.Core;
 using SelfServiceReceptionist.Core.Models;
+using SelfServiceReceptionist.Core.RestRequestModel;
 using SelfServiceReceptionist.Core.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
-using System.Web.Http.Description;
-using WebReciptionistNew.Models;
-using static ReceiptionistWeb.Controllers.SelfKiosController;
 
 namespace WebReciptionistNew.Controllers
 {
@@ -67,13 +63,11 @@ namespace WebReciptionistNew.Controllers
         //}
 
         [HttpPost]
-        public MeetingInfo SearchingEmployee(MeetingInfo RequestEmployeeInfo)
+        public List<EmployeeInfo> SearchingEmployee(GetEmployeeRequestParameter filter)
         {
-            ResponseData response = meetingservice.SearchEmployee(RequestEmployeeInfo);
-
-            MeetingInfo  meetinginfo = response.meetinginfo;
-
-            return meetinginfo ;
+            ResponseData response = meetingservice.SearchEmployee(filter);
+            List<EmployeeInfo> EmployeeInfo = response.EmployeeInfo;
+            return EmployeeInfo;
         }
 
         //[HttpPost]
@@ -85,10 +79,12 @@ namespace WebReciptionistNew.Controllers
         //}
 
         [HttpPost]
-        public VisitorInfo SearchingVisitor(VisitorInfo VisitorInfo)
+        public VisitorInfo SearchingVisitor(GetVisitorRequestParameter filter)
         {
-            ResponseData response = meetingservice.SearchVisitor(VisitorInfo);
+            ResponseData response = meetingservice.SearchVisitor(filter);
+
             VisitorInfo visitorinfo = response.visitorinfo;
+
             return visitorinfo;
         }
     }

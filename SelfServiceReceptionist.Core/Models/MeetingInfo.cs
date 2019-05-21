@@ -29,10 +29,7 @@ namespace SelfServiceReceptionist.Core.Models
 
         public string NameEmployee { get; set; }
         public string NameVisitor { get; set; }
-
-        //public virtual EmployeeInfo Employee { get; set; }
-        //public virtual VisitorInfo Meeting { get; set; }
-
+        
         public List<EmployeeInfo> Employees { get; set; }
         public List<VisitorInfo> Visitors { get; set; }
 

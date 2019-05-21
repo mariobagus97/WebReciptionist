@@ -1,4 +1,5 @@
 ﻿using SelfServiceReceptionist.Core.Models;
+using SelfServiceReceptionist.Core.RestRequestModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,44 +24,79 @@ namespace SelfServiceReceptionist.Core.Services
             return id;
         }
 
-        public ResponseData SearchEmployee(MeetingInfo MeetingInfo)
+        //public ResponseData SearchEmployee(MeetingInfo MeetingInfo)
+        //{
+        //    try
+        //    {
+        //        foreach (var employees in MeetingInfo.Employees)
+        //        {
+
+        //            List<Employee> list_employees = db.Employees.Where(x => x.Name.StartsWith(employees.Name)).ToList();
+
+        //            MeetingInfo.Employees = new List<EmployeeInfo>();
+
+        //                List<Employee> list_employee = db.Employees.Where(x => x.Name.Contains(employees.Name)).ToList();
+
+        //                foreach (var split_employee in list_employee)
+
+        //                {
+        //                    string[] splitData = split_employee.Name.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+
+        //                    foreach (var employee_splitData in splitData)
+
+        //                    {
+
+        //                        if (employees.Name == employee_splitData)
+        //                        {
+        //                            EmployeeInfo employeeinfo = new EmployeeInfo();
+        //                            employeeinfo.Name = split_employee.Name;
+        //                            employeeinfo.Company = split_employee.Company;
+        //                            employeeinfo.Email = split_employee.Email;
+        //                            employeeinfo.Phone = split_employee.Phone;
+        //                            employeeinfo.EmployeeID = split_employee.EmployeeID;
+
+        //                            MeetingInfo.Employees.Add(employeeinfo);
+        //                        }
+        //                    }
+        //                }
+        //        }
+
+        //        return new ResponseData() { meetinginfo = MeetingInfo };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new ResponseData() { ErrorMessage = ex.Message };
+        //    }
+        //}
+
+        public ResponseData SearchEmployee(GetEmployeeRequestParameter filter)
         {
             try
             {
-                foreach (var employees in MeetingInfo.Employees)
-                {
+                List<EmployeeInfo> EmployeesInfo = new List<EmployeeInfo>();
+                List<Employee> list_employee = db.Employees.Where(x => x.Name.Contains(filter.Name)).ToList();
 
-                    List<Employee> list_employees = db.Employees.Where(x => x.Name.StartsWith(employees.Name)).ToList();
+                    foreach (var split_employee in list_employee)
 
-                    MeetingInfo.Employees = new List<EmployeeInfo>();
-                    
-                        List<Employee> list_employee = db.Employees.Where(x => x.Name.Contains(employees.Name)).ToList();
-                    
-                        foreach (var split_employee in list_employee)
+                    {
+                        string[] splitData = split_employee.Name.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
 
+                        foreach (var employee_splitData in splitData)
                         {
-                            string[] splitData = split_employee.Name.Split(new string[] { " " }, StringSplitOptions.RemoveEmptyEntries);
-                        
-                            foreach (var employee_splitData in splitData)
-
+                            if (filter.Name == employee_splitData)
                             {
+                                EmployeeInfo employeeinfo = new EmployeeInfo();
+                                employeeinfo.Name = split_employee.Name;
+                                employeeinfo.Company = split_employee.Company;
+                                employeeinfo.Email = split_employee.Email;
+                                employeeinfo.Phone = split_employee.Phone;
+                                employeeinfo.EmployeeID = split_employee.EmployeeID;
 
-                                if (employees.Name == employee_splitData)
-                                {
-                                    EmployeeInfo employeeinfo = new EmployeeInfo();
-                                    employeeinfo.Name = split_employee.Name;
-                                    employeeinfo.Company = split_employee.Company;
-                                    employeeinfo.Email = split_employee.Email;
-                                    employeeinfo.Phone = split_employee.Phone;
-                                    employeeinfo.EmployeeID = split_employee.EmployeeID;
-
-                                    MeetingInfo.Employees.Add(employeeinfo);
-                                }
+                                EmployeesInfo.Add(employeeinfo);
                             }
                         }
-                }
-
-                return new ResponseData() { meetinginfo = MeetingInfo };
+                    }
+                return new ResponseData() { EmployeeInfo = EmployeesInfo };
             }
             catch (Exception ex)
             {
@@ -68,22 +104,47 @@ namespace SelfServiceReceptionist.Core.Services
             }
         }
 
-        public ResponseData SearchVisitor(VisitorInfo visitorinfo)
+        //public ResponseData SearchVisitor(VisitorInfo visitorinfo)
+        //{
+        //    try
+        //    {
+        //        Visitor visitors = new Visitor();
+
+        //        visitors = db.Visitors.Where(x => x.Phone.Equals(visitorinfo.Phone)).FirstOrDefault();
+
+        //        if (visitors != null)
+        //        {
+        //            visitorinfo = new VisitorInfo();
+        //            visitorinfo.VisitorID = visitors.VisitorID;
+        //            visitorinfo.Name = visitors.Name;
+        //            visitorinfo.Phone = visitors.Phone;
+        //            visitorinfo.Company = visitors.Company;
+        //            visitorinfo.Email = visitors.Email;
+        //        }
+
+        //        return new ResponseData() { visitorinfo = visitorinfo };
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new ResponseData() { ErrorMessage = ex.Message };
+        //    }
+        //}
+
+        public ResponseData SearchVisitor(GetVisitorRequestParameter filter)
         {
             try
             {
-                Visitor visitors = new Visitor();
+                Visitor visitor = db.Visitors.Where(x => x.Phone.Equals(filter.PhoneNumber)).FirstOrDefault();
 
-                visitors = db.Visitors.Where(x => x.Phone.Equals(visitorinfo.Phone)).FirstOrDefault();
-                
-                if (visitors != null)
+                VisitorInfo visitorinfo = new VisitorInfo();
+
+                if (visitor != null)
                 {
-                    visitorinfo = new VisitorInfo();
-                    visitorinfo.VisitorID = visitors.VisitorID;
-                    visitorinfo.Name = visitors.Name;
-                    visitorinfo.Phone = visitors.Phone;
-                    visitorinfo.Company = visitors.Company;
-                    visitorinfo.Email = visitors.Email;
+                    visitorinfo.VisitorID = visitor.VisitorID;
+                    visitorinfo.Name = visitor.Name;
+                    visitorinfo.Phone = visitor.Phone;
+                    visitorinfo.Company = visitor.Company;
+                    visitorinfo.Email = visitor.Email;
                 }
 
                 return new ResponseData() { visitorinfo = visitorinfo };
@@ -93,7 +154,7 @@ namespace SelfServiceReceptionist.Core.Services
                 return new ResponseData() { ErrorMessage = ex.Message };
             }
         }
-        
+
         public ResponseData SearchMeeting(MeetingInfo MeetingInfo)
         {
             try
@@ -159,6 +220,7 @@ namespace SelfServiceReceptionist.Core.Services
                 meeting.Purpose = MeetingInfo.Purpose;
 
                 MeetingInfo.MeetingPin = meeting.MeetingPin;
+                MeetingInfo.MeetingKey = meeting.MeetingKey;
 
                 db.Meetings.Add(meeting);
 
@@ -237,35 +299,35 @@ namespace SelfServiceReceptionist.Core.Services
 }
 
     
-        public ResponseData SendMessage(MeetingInfo MeetingInfo)
-        {
-            try
-            {
-                VisitorInfo visitorinfo = new VisitorInfo();
+//        public ResponseData SendMessage(MeetingInfo MeetingInfo)
+//        {
+//            try
+//            {
+//                VisitorInfo visitorinfo = new VisitorInfo();
 
-                foreach (var visitor in MeetingInfo.Visitors)
-                {
-                    visitorinfo.Name = visitor.Name;
-                }
+//                foreach (var visitor in MeetingInfo.Visitors)
+//                {
+//                    visitorinfo.Name = visitor.Name;
+//                }
                 
-                var accountSid = "AC0570cbb489f7b533cf2517f08f578cbc";
-                var authToken = "318d9a8b8a2faa57fc21791d985e04ed";
-                TwilioClient.Init(accountSid, authToken);
+//                var accountSid = "AC0570cbb489f7b533cf2517f08f578cbc";
+//                var authToken = "318d9a8b8a2faa57fc21791d985e04ed";
+//                TwilioClient.Init(accountSid, authToken);
 
-                var messageOptions = new CreateMessageOptions(
-                    new PhoneNumber("whatsapp:+6289601688992"));
-                messageOptions.From = new PhoneNumber("whatsapp:+14155238886");
-                messageOptions.Body = visitorinfo.Name + " want to " + MeetingInfo.Purpose + " with you";
+//                var messageOptions = new CreateMessageOptions(
+//                    new PhoneNumber("whatsapp:+6289601688992"));
+//                messageOptions.From = new PhoneNumber("whatsapp:+14155238886");
+//                messageOptions.Body = visitorinfo.Name + " want to " + MeetingInfo.Purpose + " with you";
 
-                MessageResource.Create(messageOptions);
+//                MessageResource.Create(messageOptions);
 
-                return new ResponseData() { meetinginfo = MeetingInfo };
-        }
-            catch (Exception ex)
-            {
-                return new ResponseData() { ErrorMessage = ex.Message };
-    }
-}
+//                return new ResponseData() { meetinginfo = MeetingInfo };
+//        }
+//            catch (Exception ex)
+//            {
+//                return new ResponseData() { ErrorMessage = ex.Message };
+//    }
+//}
 
 
         public ResponseData SendEmail(MeetingInfo MeetingInfo)

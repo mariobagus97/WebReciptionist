@@ -19,30 +19,25 @@ namespace ReceiptionistWeb.Controllers
         public MeetingInfo NewMeeting(MeetingInfo createmeeting)
         {
             ResponseData response = meetingservice.CreateMeeting(createmeeting);
-
             MeetingInfo meetinginfo = response.meetinginfo;
-
-            return meetinginfo;
-            
-        }
-
-        [HttpPost]
-        public MeetingInfo NotifyEmployee(MeetingInfo notifyemployee)
-        {
-            ResponseData response = meetingservice.SendMessage(notifyemployee);
-
-            MeetingInfo meetinginfo = response.meetinginfo;
-
             return meetinginfo;
         }
+
+        //[HttpPost]
+        //public MeetingInfo NotifyEmployee(MeetingInfo notifyemployee)
+        //{
+        //    ResponseData response = meetingservice.SendMessage(notifyemployee);
+
+        //    MeetingInfo meetinginfo = response.meetinginfo;
+
+        //    return meetinginfo;
+        //}
 
         [HttpPost]
         public MeetingInfo NotifyEmailEmployee(MeetingInfo notifyemployee)
         {
             ResponseData response = meetingservice.SendEmail(notifyemployee);
-
             MeetingInfo meetinginfo = response.meetinginfo;
-
             return meetinginfo;
         }
 

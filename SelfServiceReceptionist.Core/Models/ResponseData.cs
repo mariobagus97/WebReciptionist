@@ -10,10 +10,11 @@ namespace SelfServiceReceptionist.Core.Models
     {
         public string ErrorMessage { get; set; }
 
-       public MeetingInfo meetinginfo { get; set; }
+        public MeetingInfo meetinginfo { get; set; }
 
         public VisitorInfo visitorinfo { get; set; }
 
-        public Object data { get; set; }
+        public List<EmployeeInfo> EmployeeInfo { get; set; }
+        
     }
 }
