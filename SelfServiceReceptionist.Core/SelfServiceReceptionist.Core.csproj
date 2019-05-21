@@ -105,6 +105,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Receiptionist.edmx</DependentUpon>
     </Compile>
+    <Compile Include="RestRequestModel\GetMeetingRequestParameter.cs" />
     <Compile Include="Services\MeetingService.cs" />
     <Compile Include="sysdiagram.cs">
       <DependentUpon>Receiptionist.tt</DependentUpon>

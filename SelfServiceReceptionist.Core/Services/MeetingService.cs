@@ -67,6 +67,7 @@ namespace SelfServiceReceptionist.Core.Services
                 return new ResponseData() { ErrorMessage = ex.Message };
             }
         }
+
         public ResponseData SearchVisitor(VisitorInfo visitorinfo)
         {
             try
@@ -92,8 +93,7 @@ namespace SelfServiceReceptionist.Core.Services
                 return new ResponseData() { ErrorMessage = ex.Message };
             }
         }
-
-
+        
         public ResponseData SearchMeeting(MeetingInfo MeetingInfo)
         {
             try

@@ -56,10 +56,19 @@ namespace WebReciptionistNew.Controllers
             return meetinginfo;
         }
 
+        //[HttpPost]
+        //public MeetingInfo SearchingMeeting(GetMeetingRequestData requestmeetinginfo)
+        //{
+        //    ResponseData response = meetingservice.SearchMeeting(requestmeetinginfo);
+
+        //    MeetingInfo meetinginfo = response.meetinginfo;
+
+        //    return meetinginfo;
+        //}
+
         [HttpPost]
         public MeetingInfo SearchingEmployee(MeetingInfo RequestEmployeeInfo)
         {
-            
             ResponseData response = meetingservice.SearchEmployee(RequestEmployeeInfo);
 
             MeetingInfo  meetinginfo = response.meetinginfo;
@@ -67,16 +76,20 @@ namespace WebReciptionistNew.Controllers
             return meetinginfo ;
         }
 
+        //[HttpPost]
+        //public VisitorInfo SearchingVisitor(VisitorInfo VisitorInfo)
+        //{
+        //    ResponseData response = meetingservice.SearchVisitor(VisitorInfo);
+        //    VisitorInfo visitorinfo = response.visitorinfo;
+        //    return visitorinfo;
+        //}
+
         [HttpPost]
         public VisitorInfo SearchingVisitor(VisitorInfo VisitorInfo)
         {
             ResponseData response = meetingservice.SearchVisitor(VisitorInfo);
-
             VisitorInfo visitorinfo = response.visitorinfo;
-
             return visitorinfo;
         }
-
-
     }
 }
