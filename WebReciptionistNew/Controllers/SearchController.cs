@@ -1,4 +1,5 @@
 ﻿using SelfServiceReceptionist.Core;
+using SelfServiceReceptionist.Core.DbModel;
 using SelfServiceReceptionist.Core.Models;
 using SelfServiceReceptionist.Core.RestRequestModel;
 using SelfServiceReceptionist.Core.Services;
@@ -13,7 +14,7 @@ namespace WebReciptionistNew.Controllers
     {
         MeetingService meetingservice = new MeetingService();
 
-        private Receiptionist db = new Receiptionist();
+        private ReceptEntities db = new ReceptEntities();
 
         [HttpPost]
         public MeetingInfo ListSearchVisitor(VisitorInfo visitorinfo)
@@ -82,10 +83,9 @@ namespace WebReciptionistNew.Controllers
         public VisitorInfo SearchingVisitor(GetVisitorRequestParameter filter)
         {
             ResponseData response = meetingservice.SearchVisitor(filter);
-
             VisitorInfo visitorinfo = response.visitorinfo;
-
             return visitorinfo;
         }
+
     }
 }

@@ -240,49 +240,17 @@
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SelfKiosController.cs" />
     <Compile Include="Controllers\TestingController.cs" />
-    <Compile Include="Employee.cs">
-      <DependentUpon>Receipt.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EmployeeMeeting.cs">
-      <DependentUpon>Receipt.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Meeting.cs">
-      <DependentUpon>Receipt.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\AccountBindingModels.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\EmployeeData.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\NewMeeting.cs" />
-    <Compile Include="Models\Testing.cs" />
+    <Compile Include="Models\VisitorPhone.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
-    <Compile Include="Receipt.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Receipt.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Receipt.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Receipt.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Receipt.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Receipt.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Results\ChallengeResult.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="Visitor.cs">
-      <DependentUpon>Receipt.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VisitorMeeting.cs">
-      <DependentUpon>Receipt.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -352,21 +320,13 @@
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Receipt.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Receipt.edmx</DependentUpon>
-      <LastGenOutput>Receipt.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Receipt.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Receipt.edmx</DependentUpon>
-      <LastGenOutput>Receipt.cs</LastGenOutput>
-    </Content>
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\ResourceModel.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
@@ -390,13 +350,7 @@
     </Content>
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TestClientReferences.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TestClientDialogs.cshtml" />
-    <EntityDeploy Include="Receipt.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Receipt.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Receipt.edmx.diagram">
-      <DependentUpon>Receipt.edmx</DependentUpon>
-    </Content>
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -413,7 +367,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\WebApiTestClient.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

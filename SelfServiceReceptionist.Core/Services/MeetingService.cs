@@ -1,4 +1,5 @@
-﻿using SelfServiceReceptionist.Core.Models;
+﻿using SelfServiceReceptionist.Core.DbModel;
+using SelfServiceReceptionist.Core.Models;
 using SelfServiceReceptionist.Core.RestRequestModel;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ namespace SelfServiceReceptionist.Core.Services
 {
     public class MeetingService
     {
-        private Receiptionist db = new Receiptionist();
+        private ReceptEntities db = new ReceptEntities();
+
         public string MeetingRandomPin()
         {
             int _min = 000;
@@ -83,7 +85,7 @@ namespace SelfServiceReceptionist.Core.Services
 
                         foreach (var employee_splitData in splitData)
                         {
-                            if (filter.Name == employee_splitData)
+                            if (filter.Name.ToLower() == employee_splitData.ToLower())
                             {
                                 EmployeeInfo employeeinfo = new EmployeeInfo();
                                 employeeinfo.Name = split_employee.Name;
@@ -130,30 +132,27 @@ namespace SelfServiceReceptionist.Core.Services
         //    }
         //}
 
-        public ResponseData SearchVisitor(GetVisitorRequestParameter filter)
-        {
-            try
+            public ResponseData SearchVisitor(GetVisitorRequestParameter filter)
             {
-                Visitor visitor = db.Visitors.Where(x => x.Phone.Equals(filter.PhoneNumber)).FirstOrDefault();
-
-                VisitorInfo visitorinfo = new VisitorInfo();
-
-                if (visitor != null)
+                try
                 {
-                    visitorinfo.VisitorID = visitor.VisitorID;
-                    visitorinfo.Name = visitor.Name;
-                    visitorinfo.Phone = visitor.Phone;
-                    visitorinfo.Company = visitor.Company;
-                    visitorinfo.Email = visitor.Email;
+                    Visitor visitor = db.Visitors.Where(x => x.Phone.Equals(filter.PhoneNumber)).FirstOrDefault();
+                    VisitorInfo visitorinfo = new VisitorInfo();
+                    if (visitor != null)
+                    {
+                        visitorinfo.VisitorID = visitor.VisitorID;
+                        visitorinfo.Name = visitor.Name;
+                        visitorinfo.Phone = visitor.Phone;
+                        visitorinfo.Company = visitor.Company;
+                        visitorinfo.Email = visitor.Email;
+                    }
+                    return new ResponseData() { visitorinfo = visitorinfo };
                 }
-
-                return new ResponseData() { visitorinfo = visitorinfo };
+                catch (Exception ex)
+                {
+                    return new ResponseData() { ErrorMessage = ex.Message };
+                }
             }
-            catch (Exception ex)
-            {
-                return new ResponseData() { ErrorMessage = ex.Message };
-            }
-        }
 
         public ResponseData SearchMeeting(MeetingInfo MeetingInfo)
         {
@@ -350,14 +349,12 @@ namespace SelfServiceReceptionist.Core.Services
                 {
                     sendemail.NameVisitor = meetingin.Name;
                 }
-
-
+                
                 email.From = new MailAddress("ultravouchergroup@gmail.com");
                 email.To.Add(sendemail.Emailemployee );
                 email.Subject = MeetingInfo.Purpose;
                 email.Body = sendemail.NameVisitor + " want to " + MeetingInfo.Purpose + " you" ;
                 
-
                 SmtpServer.Port = 587;
                 SmtpServer.Credentials = new System.Net.NetworkCredential("ultravouchergroup@gmail.com", "muzamil123");
                 SmtpServer.EnableSsl = true;

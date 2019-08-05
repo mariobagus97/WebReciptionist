@@ -72,14 +72,35 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee.cs">
-      <DependentUpon>Receiptionist.tt</DependentUpon>
+    <Compile Include="DbModel\Employee.cs">
+      <DependentUpon>ReceptionistNew.tt</DependentUpon>
     </Compile>
-    <Compile Include="EmployeeMeeting.cs">
-      <DependentUpon>Receiptionist.tt</DependentUpon>
+    <Compile Include="DbModel\EmployeeMeeting.cs">
+      <DependentUpon>ReceptionistNew.tt</DependentUpon>
     </Compile>
-    <Compile Include="Meeting.cs">
-      <DependentUpon>Receiptionist.tt</DependentUpon>
+    <Compile Include="DbModel\Meeting.cs">
+      <DependentUpon>ReceptionistNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\ReceptionistNew.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReceptionistNew.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\ReceptionistNew.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReceptionistNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\ReceptionistNew.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReceptionistNew.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\Visitor.cs">
+      <DependentUpon>ReceptionistNew.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DbModel\VisitorMeeting.cs">
+      <DependentUpon>ReceptionistNew.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SendEmail.cs" />
     <Compile Include="Models\GetMeetingRequestData.cs" />
@@ -90,47 +111,30 @@
     <Compile Include="Models\RequestData.cs" />
     <Compile Include="Models\VisitorInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Receiptionist.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Receiptionist.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Receiptionist.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Receiptionist.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Receiptionist.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Receiptionist.edmx</DependentUpon>
-    </Compile>
     <Compile Include="RestRequestModel\GetEmployeeRequestParameter.cs" />
     <Compile Include="RestRequestModel\GetMeetingRequestParameter.cs" />
     <Compile Include="RestRequestModel\GetVisitorRequestParameter.cs" />
     <Compile Include="Services\MeetingService.cs" />
-    <Compile Include="sysdiagram.cs">
-      <DependentUpon>Receiptionist.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Visitor.cs">
-      <DependentUpon>Receiptionist.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VisitorMeeting.cs">
-      <DependentUpon>Receiptionist.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
+    <EntityDeploy Include="DbModel\ReceptionistNew.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ReceptionistNew.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DbModel\ReceptionistNew.edmx.diagram">
+      <DependentUpon>ReceptionistNew.edmx</DependentUpon>
+    </None>
     <None Include="packages.config" />
-    <Content Include="Receiptionist.Context.tt">
+    <Content Include="DbModel\ReceptionistNew.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Receiptionist.edmx</DependentUpon>
-      <LastGenOutput>Receiptionist.Context.cs</LastGenOutput>
+      <DependentUpon>ReceptionistNew.edmx</DependentUpon>
+      <LastGenOutput>ReceptionistNew.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Receiptionist.tt">
+    <Content Include="DbModel\ReceptionistNew.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Receiptionist.edmx</DependentUpon>
-      <LastGenOutput>Receiptionist.cs</LastGenOutput>
+      <DependentUpon>ReceptionistNew.edmx</DependentUpon>
+      <LastGenOutput>ReceptionistNew.cs</LastGenOutput>
     </Content>
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -139,17 +143,11 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <EntityDeploy Include="Receiptionist.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Receiptionist.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <None Include="Receiptionist.edmx.diagram">
-      <DependentUpon>Receiptionist.edmx</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

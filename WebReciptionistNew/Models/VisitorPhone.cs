@@ -5,8 +5,8 @@ using System.Web;
 
 namespace WebReciptionistNew.Models
 {
-    
-    //public class EmployeeData
-    //{
-    //}
+    public class VisitorPhone
+    {
+        public int phone { get; set; }
+    }
 }

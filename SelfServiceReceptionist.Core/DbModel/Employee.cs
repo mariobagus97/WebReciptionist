@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebReciptionistNew
+namespace SelfServiceReceptionist.Core.DbModel
 {
     using System;
     using System.Collections.Generic;
@@ -23,7 +23,8 @@ namespace WebReciptionistNew
         public System.Guid EmployeeID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
-        public Nullable<decimal> Phone { get; set; }
+        public string Phone { get; set; }
+        public string Company { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeMeeting> EmployeeMeetings { get; set; }

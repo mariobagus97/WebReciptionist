@@ -7,32 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebReciptionistNew
+namespace SelfServiceReceptionist.Core.DbModel
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Meeting
+    public partial class Visitor
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Meeting()
+        public Visitor()
         {
-            this.EmployeeMeetings = new HashSet<EmployeeMeeting>();
             this.VisitorMeetings = new HashSet<VisitorMeeting>();
         }
     
-        public System.Guid MeetingID { get; set; }
-        public string MeetingPin { get; set; }
-        public Nullable<System.DateTime> StartTime { get; set; }
-        public Nullable<System.DateTime> EndTime { get; set; }
-        public string Purpose { get; set; }
-        public string MeetingKey { get; set; }
+        public System.Guid VisitorID { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
+        public string Company { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeMeeting> EmployeeMeetings { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<VisitorMeeting> VisitorMeetings { get; set; }
-
     }
-
 }

@@ -7,16 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SelfServiceReceptionist.Core
+namespace SelfServiceReceptionist.Core.DbModel
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class Receiptionist : DbContext
+    public partial class ReceptEntities : DbContext
     {
-        public Receiptionist()
-            : base("name=Receiptionist")
+        public ReceptEntities()
+            : base("name=ReceptEntities")
         {
         }
     
@@ -30,6 +30,5 @@ namespace SelfServiceReceptionist.Core
         public virtual DbSet<Meeting> Meetings { get; set; }
         public virtual DbSet<VisitorMeeting> VisitorMeetings { get; set; }
         public virtual DbSet<Visitor> Visitors { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
     }
 }

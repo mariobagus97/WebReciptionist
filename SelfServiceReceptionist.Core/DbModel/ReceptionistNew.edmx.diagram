@@ -4,17 +4,16 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="1d6b92694f9442ca89400f9c800c1eb6" Name="Diagram1">
-        <EntityTypeShape EntityType="ReceptModel.EmployeeMeeting" Width="1.5" PointX="7.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReceptModel.Employee" Width="1.5" PointX="7" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReceptModel.Meeting" Width="1.5" PointX="4.875" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReceptModel.VisitorMeeting" Width="1.5" PointX="2.125" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ReceptModel.Visitor" Width="1.5" PointX="2" PointY="3.375" IsExpanded="true" />
+      <Diagram DiagramId="64d439ba74d64288978d5f95f13fa4b1" Name="Diagram1">
+        <EntityTypeShape EntityType="ReceptModel.EmployeeMeeting" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReceptModel.Employee" Width="1.5" PointX="0.75" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReceptModel.Meeting" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReceptModel.VisitorMeeting" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ReceptModel.Visitor" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
         <AssociationConnector Association="ReceptModel.FK_EmployeeMeetings_Employees" ManuallyRouted="false" />
         <AssociationConnector Association="ReceptModel.FK_EmployeeMeetings_Meetings" ManuallyRouted="false" />
         <AssociationConnector Association="ReceptModel.FK_VisitorMeetings_Meetings" ManuallyRouted="false" />
         <AssociationConnector Association="ReceptModel.FK_VisitorMeetings_Visitors" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="ReceptModel.sysdiagram" Width="1.5" PointX="0.75" PointY="6.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

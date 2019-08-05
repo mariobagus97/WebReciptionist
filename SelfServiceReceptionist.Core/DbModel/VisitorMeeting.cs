@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebReciptionistNew
+namespace SelfServiceReceptionist.Core.DbModel
 {
     using System;
     using System.Collections.Generic;
